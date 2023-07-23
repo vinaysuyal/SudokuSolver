@@ -33,7 +33,6 @@ function App() {
     }
     return emptyCells;
   };
-  console.log(validSudoku);
   return (
     <div className="App">
       <h1>Backtracking Sudoku Solver Visualiser</h1>
@@ -101,7 +100,7 @@ function App() {
             </button>
             <button
               onClick={() => {
-                setBoard(data[0]);
+                setBoard(deepCopy(data[0]));
               }}
             >
               Use Sample Input
