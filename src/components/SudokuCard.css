@@ -1,0 +1,7 @@
+.sudokuCard {
+  height: fit-content;
+  width: fit-content;
+  border: 4px black solid;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}

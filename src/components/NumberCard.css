@@ -1,0 +1,12 @@
+.numberCard {
+  border: 1px solid black;
+  text-align: center;
+  height: 2rem;
+  width: 2rem;
+}
+.numberCard p {
+  line-height: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
