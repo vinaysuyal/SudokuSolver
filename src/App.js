@@ -67,7 +67,11 @@ function App() {
           <div>
             <button
               onClick={() => {
-                console.log(findEmptyCells(board).length > 55, board);
+                if (findEmptyCells(board).length == 0) {
+                  alert(
+                    "All fields filled. Please Enter custom Values or use Sample Values"
+                  );
+                }
                 if (findEmptyCells(board).length > 55) {
                   alert("Enter at least 25 values");
                   return;
@@ -79,13 +83,10 @@ function App() {
                   pace,
                   (newBoard) => {
                     setBoard(newBoard);
+                  },
+                  () => {
+                    setSolving(false);
                   }
-                  // () => {
-                  //   setSolving(false);
-                  //   if (findEmptyCells(board).length > 0) {
-                  //     alert("Empty Cells Present");
-                  //   }
-                  // }
                 );
                 const result = a();
                 if (result == false) {

@@ -6,21 +6,21 @@ export default function getSudokuSolver(
 ) {
   let time = 0;
 
-  // const debounceMessage = () => {
-  //   let timeout = null;
-  //   return function () {
-  //     if (timeout) {
-  //       clearTimeout(timeout);
-  //     }
-  //     timeout = setTimeout(() => {
-  //       onCompletion();
-  //     }, time + 1000);
-  //   };
-  // };
-  // const debouncer = debounceMessage();
+  const debounceMessage = () => {
+    let timeout = null;
+    return function () {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(() => {
+        onCompletion();
+      }, time + 1000);
+    };
+  };
+  const debouncer = debounceMessage();
   const changeValue = (newBoard, r, c) => {
     time = time + timeDifference;
-    //debouncer();
+    debouncer();
     setTimeout(() => {
       onChangeValue(newBoard);
     }, time);
