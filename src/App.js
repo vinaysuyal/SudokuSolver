@@ -8,7 +8,7 @@ import getSudokuSolver, { deepCopy } from "./utils/sudokuSolver";
 
 function App() {
   const [board, setBoard] = useState(deepCopy(data[0]));
-  const [pace, setPace] = useState(100);
+  const [pace, setPace] = useState(1);
   const [solving, setSolving] = useState(false);
   const [customInput, setCustomInput] = useState(false);
   const [validSudoku, setValidSudoku] = useState(true);
@@ -33,7 +33,7 @@ function App() {
     }
     return emptyCells;
   };
-
+  console.log(validSudoku);
   return (
     <div className="App">
       <h1>Backtracking Sudoku Solver Visualiser</h1>
@@ -79,14 +79,19 @@ function App() {
                   pace,
                   (newBoard) => {
                     setBoard(newBoard);
-                  },
-                  () => {
-                    setSolving(false);
-                    if (!validSudoku) alert("Invalid Sudoku");
                   }
+                  // () => {
+                  //   setSolving(false);
+                  //   if (findEmptyCells(board).length > 0) {
+                  //     alert("Empty Cells Present");
+                  //   }
+                  // }
                 );
                 const result = a();
                 if (result == false) {
+                  alert(
+                    "Invalid Sudoku. On Clicking on Ok, You can see the tracking."
+                  );
                   setValidSudoku(false);
                 }
               }}

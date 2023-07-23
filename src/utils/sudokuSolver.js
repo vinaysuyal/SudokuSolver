@@ -6,21 +6,21 @@ export default function getSudokuSolver(
 ) {
   let time = 0;
 
-  const debounceMessage = () => {
-    let timeout = null;
-    return function () {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(() => {
-        onCompletion();
-      }, time + 1000);
-    };
-  };
-  const debouncer = debounceMessage();
+  // const debounceMessage = () => {
+  //   let timeout = null;
+  //   return function () {
+  //     if (timeout) {
+  //       clearTimeout(timeout);
+  //     }
+  //     timeout = setTimeout(() => {
+  //       onCompletion();
+  //     }, time + 1000);
+  //   };
+  // };
+  // const debouncer = debounceMessage();
   const changeValue = (newBoard, r, c) => {
     time = time + timeDifference;
-    debouncer();
+    //debouncer();
     setTimeout(() => {
       onChangeValue(newBoard);
     }, time);
@@ -42,8 +42,16 @@ export default function getSudokuSolver(
 
   var solveSudoku = function (r = 0, c = 0) {
     if (r == 9) return true;
-    if (board[r][c] != ".")
+    if (board[r][c] != ".") {
+      let temp = board[r][c];
+      board[r][c] = ".";
+      if (!isValid(board, r, c, "" + temp)) {
+        board[r][c] = temp;
+        return false;
+      }
+      board[r][c] = temp;
       return solveSudoku(c == 8 ? r + 1 : r, c == 8 ? 0 : c + 1);
+    }
 
     for (let i = 1; i <= 9; i++) {
       if (isValid(board, r, c, "" + i)) {
