@@ -1,6 +1,6 @@
 import NumberCard from "./NumberCard";
 import "./SudokuCard.css";
-const SudokuCard = ({ board = [[]], setBoard, editable }) => {
+const SudokuCard = ({ board = [[]], setBoard, editable, visited }) => {
   return (
     <div className="sudokuCard">
       {board.map((row, rowIndex) => {
@@ -8,7 +8,13 @@ const SudokuCard = ({ board = [[]], setBoard, editable }) => {
           return (
             <NumberCard
               value={element}
-              bgColor={element === "." ? "red" : "green"}
+              bgColor={
+                element === "."
+                  ? visited[rowIndex][colIndex]
+                    ? "#00FF80"
+                    : "#ECEFF1 "
+                  : "#FF4040"
+              }
               id={rowIndex + "" + colIndex}
               row={rowIndex}
               col={colIndex}

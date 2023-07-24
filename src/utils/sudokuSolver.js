@@ -1,8 +1,10 @@
 export default function getSudokuSolver(
   board,
+  visited,
   timeDifference,
   onChangeValue,
-  onCompletion
+  onCompletion,
+  onVisit
 ) {
   let time = 0;
 
@@ -18,10 +20,11 @@ export default function getSudokuSolver(
     };
   };
   const debouncer = debounceMessage();
-  const changeValue = (newBoard, r, c) => {
+  const changeValue = (newBoard, newVisited, r, c) => {
     time = time + timeDifference;
     debouncer();
     setTimeout(() => {
+      onVisit(newVisited);
       onChangeValue(newBoard);
     }, time);
   };
@@ -42,6 +45,7 @@ export default function getSudokuSolver(
 
   var solveSudoku = function (r = 0, c = 0) {
     if (r == 9) return true;
+    visited[r][c] = true;
     if (board[r][c] != ".") {
       let temp = board[r][c];
       board[r][c] = ".";
@@ -56,10 +60,10 @@ export default function getSudokuSolver(
     for (let i = 1; i <= 9; i++) {
       if (isValid(board, r, c, "" + i)) {
         board[r][c] = "" + i;
-        changeValue(deepCopy(board), r, c);
+        changeValue(deepCopy(board), deepCopy(visited), r, c);
         if (solveSudoku(c == 8 ? r + 1 : r, c == 8 ? 0 : c + 1)) return true;
         board[r][c] = ".";
-        changeValue(deepCopy(board), r, c);
+        changeValue(deepCopy(board), deepCopy(visited), r, c);
       }
     }
     return false;
