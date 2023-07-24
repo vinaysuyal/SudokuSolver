@@ -36,10 +36,10 @@ function App() {
   return (
     <div className="App">
       <h1>Backtracking Sudoku Solver Visualiser</h1>
-      {!customInput && <SudokuCard board={board} />}
-      {customInput && (
+      {<SudokuCard board={board} setBoard={setBoard} editable={customInput} />}
+      {/* {customInput && (
         <SudokuGrid gridValues={board} setGridValues={setBoard} />
-      )}
+      )} */}
       {!solving && (
         <>
           <span>
@@ -47,11 +47,10 @@ function App() {
               checked={customInput}
               onChange={(e) => {
                 setCustomInput((prev) => !prev);
-                clearBoard();
               }}
               type="checkbox"
             />
-            Use Custom Input
+            Edit
           </span>
           <span>
             <IncrementDecrementCounter
@@ -70,6 +69,7 @@ function App() {
                   alert(
                     "All fields filled. Please Enter custom Values or use Sample Values"
                   );
+                  return;
                 }
                 if (findEmptyCells(board).length > 55) {
                   alert("Enter at least 25 values");
@@ -104,6 +104,13 @@ function App() {
               }}
             >
               Use Sample Input
+            </button>
+            <button
+              onClick={() => {
+                clearBoard();
+              }}
+            >
+              Clear Board
             </button>
           </div>
         </>

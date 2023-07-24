@@ -4,9 +4,29 @@
   height: 2rem;
   width: 2rem;
 }
+@media only screen and (min-width: 400px) {
+  .numberCard {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .numberCard {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
 .numberCard p {
   line-height: 1rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   font-weight: bold;
+}
+.numberCard input {
+  height: 100%;
+  width: 100%;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
 }

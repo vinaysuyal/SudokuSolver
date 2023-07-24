@@ -1,15 +1,20 @@
 import NumberCard from "./NumberCard";
 import "./SudokuCard.css";
-const SudokuCard = ({ board = [[]], color }) => {
+const SudokuCard = ({ board = [[]], setBoard, editable }) => {
   return (
     <div className="sudokuCard">
-      {board.map((row, index1) => {
-        return row.map((element, index2) => {
+      {board.map((row, rowIndex) => {
+        return row.map((element, colIndex) => {
           return (
             <NumberCard
               value={element}
               bgColor={element === "." ? "red" : "green"}
-              id={index1 + "" + index2}
+              id={rowIndex + "" + colIndex}
+              row={rowIndex}
+              col={colIndex}
+              gridValues={board}
+              setGridValues={setBoard}
+              editable={editable}
             />
           );
         });
